@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Replacement Algorithm Comparison</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 70px;
+      font-family: 'Poppins', sans-serif;
+      background: #faf9fd;
+      color: #333;
+    }
+    .h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2.5em;
+      color: #6a0dad;
+    }
+    header {
+      background: #6a0dad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: #ede7f6;
+    }
+    .tablink {
+      background: #d1c4e9;
+      border: none;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .tablink.active {
+      background: #6a0dad;
+      color: white;
+    }
+    .tabcontent {
+      display: none;
+      padding: 20px;
+    }
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    canvas {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ede7f6;
+      margin-top: 40px;
+    }
+
+
+    .navbar {
+    background-color: black; /* Purple background */
+    overflow: hidden;
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    flex: 1;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Animation effects */
+}
+
+.navbar a:hover {
+    background-color:#5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+   
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+        <ul>
+            <li><a href="f_dashboard.html">Home</a></li>
+            <li><a href="f_run.html">Simulator</a></li>
+            <li><a href="f_theory.html">Theory</a></li>
+            <li><a href="coa.html">Compare Algorithms</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+  <h1>📊 Page Replacement Algorithm Comparison</h1>
+
+<div class="tabs">
+  <button class="tablink active" onclick="openTab(event, 'FIFO')">FIFO</button>
+  <button class="tablink" onclick="openTab(event, 'Optimal')">Optimal</button>
+  <button class="tablink" onclick="openTab(event, 'LRU')">LRU</button>
+</div>
+<div id="FIFO" class="tabcontent" style="display:block">
+  <h2>FIFO (First In First Out)</h2>
+  <p><strong>Definition:</strong> This algorithm replaces the oldest page in memory when a new page needs to be loaded. It operates like a queue, where the first page that entered is the first to be removed.
+
+</p>
+  <p><strong>Working:</strong> Pages are loaded in a queue; when a page needs to be replaced, the one at the front is removed.</p>
+</div>
+<div id="Optimal" class="tabcontent">
+  <h2>Optimal Page Replacement</h2>
+  <p><strong>Definition:</strong>  This algorithm replaces the page that will not be used for the longest time in the future. It provides the lowest possible page fault rate but requires knowledge of future page requests, making it impractical for real-world use.</p>
+  <p><strong>Working:</strong> Predicts future requests and replaces the page not needed soonest.</p>
+</div>
+<div id="LRU" class="tabcontent">
+  <h2>LRU (Least Recently Used)</h2>
+  <p><strong>Definition:</strong> This method replaces the page that has not been used for the longest time. It assumes that pages used recently will likely be needed again soon.
+
+</p>
+  <p><strong>Working:</strong> Tracks recent page usage and replaces the least recently used page.</p>
+</div>
+<div class="chart-container">
+  <canvas id="pieChart" width="200" height="200"></canvas>
+  <canvas id="barChart" width="300" height="200"></canvas>
+</div>
+<footer>
+  <p>&copy; 2025 Kiki's Algorithm Lab</p>
+</footer>
+<script>
+function openTab(evt, algoName) {
+  const tabcontents = document.getElementsByClassName("tabcontent");
+  for (let content of tabcontents) content.style.display = "none";
+  const tablinks = document.getElementsByClassName("tablink");
+  for (let link of tablinks) link.classList.remove("active");
+  document.getElementById(algoName).style.display = "block";
+  evt.currentTarget.classList.add("active");
+}
+const pieCtx = document.getElementById('pieChart').getContext('2d');
+new Chart(pieCtx, {
+  type: 'pie',
+  data: {
+    labels: ['FIFO', 'Optimal', 'LRU'],
+    datasets: [{
+      label: 'Page Hits %',
+      data: [55, 70, 65],
+      backgroundColor: ['#9575cd', '#7e57c2', '#673ab7'],
+    }]
+  },
+  options: { responsive: false }
+});
+const barCtx = document.getElementById('barChart').getContext('2d');
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: ['FIFO', 'Optimal', 'LRU'],
+    datasets: [{
+      label: 'Page Faults',
+      data: [45, 30, 35],
+      backgroundColor: ['#b39ddb', '#9575cd', '#7e57c2']
+    }]
+  },
+  options: { responsive: false }
+});
+</script>
+</body>
+</html>
