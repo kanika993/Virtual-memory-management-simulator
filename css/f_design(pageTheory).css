@@ -1,0 +1,239 @@
+ /* Navbar Styles */
+ body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: black; /* Purple background */
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    animation: slideDown 0.5s ease; /* Slide down animation for navbar */
+    padding: 10px; /* Padding for navbar */
+}
+
+.navbar ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Flexbox for horizontal layout */
+}
+
+.navbar li {
+    flex: 1; /* Equal space for each item */
+    text-align: center; /* Center text in each item */
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Animation effects */
+    font-weight: bold; /* Bold text */
+}
+
+.navbar a:hover {
+    background-color: #5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* Keyframes for navbar slide down animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%); /* Start above the viewport */
+    }
+    to {
+        transform: translateY(0); /* End at its original position */
+    }
+}
+
+/* Add some padding to the body to prevent content from being hidden behind the navbar */
+body {
+    padding-top: 60px; /* Adjust based on the height of the navbar */
+}
+   
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.navbar {
+    background-color: black; /* Purple background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px;
+    animation: slideDown 0.5s ease;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    flex: 1;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1);
+}
+
+.hero {
+    background: linear-gradient(to right, rgb(122, 169, 240));
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    animation: fadeIn 1s ease;
+}
+
+.theory-section {
+    padding: 60px 20px;
+    background-color: white;
+    text-align:left;
+    text-size-adjust: 10%;
+}
+
+.theory-section h2 {
+    color: #6A5ACD;
+    margin-bottom: 40px;
+}
+
+.theory-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #e6cce4;
+}
+
+.theory-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.theory-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes for animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+color: #333;
+margin: 0;
+padding: 20px;
+}
+
+.container {
+max-width: 600px;
+margin: auto;
+background: rgb(143, 214, 255);
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+h1 {
+text-align: center;
+color: blue; /* Purple color */
+}
+
+.concept {
+margin: 15px 0;
+cursor: pointer;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+background-color: #f9f9f9;
+transition: background-color 0.3s;
+}
+
+.concept:hover {
+background-color: #e6cce4; /* Light purple on hover */
+}
+
+.explanation {
+display: none; /* Initially hidden */
+margin-top: 10px;
+padding: 10px;
+border-left: 3px solid #6A5ACD; /* Purple left border */
+background-color: #f0f8ff; /* Light blue background */
+animation: fadeIn 0.5s ease; /* Animation for showing explanation */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+}
+.button {
+position: relative;
+padding: 10px 22px;
+border-radius: 6px;
+border: none;
+color: black;
+cursor: pointer;
+background-color: rgb(145, 109, 237);
+transition: all 0.2s ease;
+left: 45%;
+}
