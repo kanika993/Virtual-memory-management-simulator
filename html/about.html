@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>About</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="f_dashboard.html">Home</a></li>
+            <li><a href="f_run.html">Simulator</a></li>
+            <li><a href="f_theory.html">Theory</a></li>
+            <li><a href="coa.html">Compare Algorithms</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+<section id="about" style="display: flex; align-items: center; justify-content: center; background:#f8f7fc; color:#333; padding: 50px 20px; max-width: 1000px; margin: auto; font-family: 'Poppins', sans-serif; gap: 40px; border-radius: 12px; box-shadow: 0 8px 20px rgba(106,13,173,0.15);">
+
+  <!-- Text content -->
+  <div style="flex: 1; min-width: 300px;">
+    <h2 style="color:#6a0dad; margin-bottom: 30px; font-weight: 600; letter-spacing: normal; text-transform: none;">
+      About 
+    </h2>
+    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+      Welcome to the <span style="color:#4caf50; font-weight:bold;">Virtual Memory Management Simulator</span> — an interactive web app designed to help users understand and compare different memory management algorithms.
+    </p>
+    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+      This project demonstrates how popular page replacement algorithms like <strong>FIFO</strong>, <strong>Optimal</strong>, and <strong>LRU</strong> work, with animated charts and graphs.
+    </p>
+    <p style="font-size: 18px; line-height: 1.6; margin-bottom: 20px;">
+      Built with modern web technologies like <span style="color:#6a0dad; font-weight:bold;">HTML</span>, <span style="color:#6a0dad; font-weight:bold;">CSS</span>, <span style="color:#6a0dad; font-weight:bold;">JavaScript</span>, and <span style="color:#6a0dad; font-weight:bold;">Chart.js</span>, this simulator is perfect for students and anyone interested in operating systems.
+    </p>
+    <p style="font-size: 18px; line-height: 1.6;">
+      Created by <strong>Team Virtual Vision</strong> to make virtual memory concepts easy and engaging.
+    </p>
+  </div>
+
+  <!-- Funny Cartoon full side SVG -->
+  <div style="flex: 1; min-width: 300px; max-width: 400px; height: 400px; position: relative;">
+    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; stroke:#6a0dad; fill:#ede7f6; stroke-width:6; stroke-linejoin:round; stroke-linecap:round;">
+      
+      <!-- Body -->
+      <rect x="40" y="50" width="120" height="250" rx="30" ry="30" fill="#ede7f6" />
+      <rect x="40" y="50" width="120" height="250" rx="30" ry="30" fill="none" />
+      
+      <!-- Eyes -->
+      <circle cx="85" cy="120" r="18" fill="white" stroke="#6a0dad" stroke-width="6"/>
+      <circle cx="115" cy="120" r="18" fill="white" stroke="#6a0dad" stroke-width="6"/>
+      <circle cx="85" cy="120" r="9" fill="#6a0dad"/>
+      <circle cx="115" cy="120" r="9" fill="#6a0dad"/>
+      
+      <!-- Mouth -->
+      <path d="M70 190 Q100 230 130 190" fill="none" stroke="#6a0dad" stroke-width="8" stroke-linecap="round" />
+      
+      <!-- Buttons (like memory chips) -->
+      <rect x="70" y="230" width="60" height="15" rx="5" ry="5" fill="#6a0dad" />
+      <rect x="70" y="260" width="60" height="15" rx="5" ry="5" fill="#4caf50" />
+      <rect x="70" y="290" width="60" height="15" rx="5" ry="5" fill="#6a0dad" />
+      
+      <!-- Antenna -->
+      <line x1="100" y1="40" x2="100" y2="10" stroke="#6a0dad" stroke-width="8" stroke-linecap="round" />
+      <circle cx="100" cy="10" r="8" fill="#4caf50" stroke="#6a0dad" stroke-width="6"/>
+      
+      <!-- Side "wires" -->
+      <line x1="30" y1="90" x2="10" y2="150" stroke="#6a0dad" stroke-width="8" stroke-linecap="round" />
+      <line x1="170" y1="90" x2="190" y2="150" stroke="#6a0dad" stroke-width="8" stroke-linecap="round" />
+      
+      <!-- Feet -->
+      <rect x="60" y="300" width="30" height="15" rx="8" ry="8" fill="#6a0dad" />
+      <rect x="110" y="300" width="30" height="15" rx="8" ry="8" fill="#6a0dad" />
+      
+      <!-- Funny hands -->
+      <line x1="40" y1="120" x2="10" y2="100" stroke="#6a0dad" stroke-width="6" stroke-linecap="round" />
+      <line x1="160" y1="120" x2="190" y2="100" stroke="#6a0dad" stroke-width="6" stroke-linecap="round" />
+      
+    </svg>
+    <style>
+    .navbar {
+    background-color: black; /* Purple background */
+    overflow: hidden;
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    flex: 1;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Animation effects */
+}
+
+.navbar a:hover {
+    background-color:#5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+   </style>
+  </div>
+</section>
+</body>
+</html>
