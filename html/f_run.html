@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: #E6E6FA;
+      color: #86cef5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 20px;
+      min-height: 100vh;
+    }
+    /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Clean and modern font */
+    line-height: 1.6;
+    background: linear-gradient(145deg, #86cef5 ); /* Gradient background */
+    color: #333; /* General text color */
+}
+
+header {
+    background: linear-gradient(90deg, #cc66ff, #ff66b2);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    color: #993399;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff66b2, #6699ff);
+    margin: 10px auto 0;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #663399;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #993399;
+    box-shadow: 0px 0px 5px #993399;
+}
+
+button {
+    background: linear-gradient(90deg, #ff66b2, #cc66ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #cc66ff, #ff66b2);
+    transform: scale(1.05);
+}
+
+.output-section, .graph-section, .memory-visualization, .best-algorithm {
+    margin-top: 30px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.output-section div, .memory-visualization div {
+    margin: 10px 0;
+}
+
+.memory-frame {
+    width: 60px;
+    height: 60px;
+    background: #ff66b2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.memory-visualization {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+footer {
+    background: #cc66ff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    margin-top: 30px;
+}
+
+/* Chart Styles */
+canvas {
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    input, select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .memory-frame {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+.navbar {
+    background-color: black; /* Purple background */
+    overflow: hidden;
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    flex: 1;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Animation effects */
+}
+
+.navbar a:hover {
+    background-color:#5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    input, select, button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .memory-frame {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+}
+    h1 {
+      text-align: center;
+      margin: 70px;
+    }
+    label {
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    input, button {
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1.5px solid #9370DB;
+      font-size: 1rem;
+    }
+    button {
+      background-color: teal;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #7B68EE;
+    }
+    #results {
+      margin-top: 20px;
+    }
+    .result-item {
+      background: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(75,0,130,0.2);
+    }
+    .best-algorithm {
+      font-weight: bold;
+      color: #2E8B57;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 700px;
+    }
+    th, td {
+      border: 1px solid #9370DB;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #D8BFD8;
+    }
+    td.hit {
+      background-color: #C1FFC1;
+    }
+    td.fault {
+      background-color: #FFC1C1;
+    }
+    canvas {
+      max-width: 700px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+     <div id="simulator" class="section">
+        <nav class="navbar">
+            <ul>
+                <li><a href="f_dashboard.html">Home</a></li>
+                <li><a href="f_run.html">Simulator</a></li>
+                <li><a href="f_theory.html">Theory</a></li>
+                <li><a href="coa.html">Compare Algorithms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+   
+  <h1>Simulator</h1>
+
+  <div>
+    <label for="framesInput">Number of Frames:</label>
+    <input type="number" id="framesInput" min="1" max="10" placeholder="e.g. 3" />
+  </div>
+
+  <div>
+    <label for="referenceStringInput">Reference String (comma-separated):</label>
+    <input type="text" id="referenceStringInput" placeholder="e.g. 7,0,1,2,0,3,0,4,2,3,0,3,2" />
+  </div>
+
+  <button onclick="runSimulation()">Run Simulation</button>
+
+  <div id="results"></div>
+
+  <canvas id="comparisonChart"></canvas>
+
+  <div id="memoryTableContainer"></div>
+
+  <script>
+    function contains(arr, val) {
+      return arr.indexOf(val) !== -1;
+    }
+
+    // FIFO Algorithm
+    function fifo(frames, referenceString) {
+      let frameArray = [];
+      let pageFaults = 0;
+      let states = [];
+
+      for (let page of referenceString) {
+        if (!contains(frameArray, page)) {
+          if (frameArray.length < frames) {
+            frameArray.push(page);
+          } else {
+            frameArray.shift();
+            frameArray.push(page);
+          }
+          pageFaults++;
+          states.push({ frame: [...frameArray], fault: true, page: page });
+        } else {
+          states.push({ frame: [...frameArray], fault: false, page: page });
+        }
+      }
+      return { faults: pageFaults, states };
+    }
+
+    // LRU Algorithm
+    function lru(frames, referenceString) {
+      let frameArray = [];
+      let pageFaults = 0;
+      let states = [];
+
+      for (let page of referenceString) {
+        if (!contains(frameArray, page)) {
+          if (frameArray.length < frames) {
+            frameArray.push(page);
+          } else {
+            frameArray.shift();
+            frameArray.push(page);
+          }
+          pageFaults++;
+          states.push({ frame: [...frameArray], fault: true, page: page });
+        } else {
+          // Move to end (most recently used)
+          let index = frameArray.indexOf(page);
+          frameArray.splice(index, 1);
+          frameArray.push(page);
+          states.push({ frame: [...frameArray], fault: false, page: page });
+        }
+      }
+      return { faults: pageFaults, states };
+    }
+
+    // Optimal Algorithm
+    function optimal(frames, referenceString) {
+      let frameArray = [];
+      let pageFaults = 0;
+      let states = [];
+
+      for (let i = 0; i < referenceString.length; i++) {
+        let page = referenceString[i];
+        if (!contains(frameArray, page)) {
+          if (frameArray.length < frames) {
+            frameArray.push(page);
+          } else {
+            // Find page in frame not used for longest future time
+            let indexToReplace = -1;
+            let farthest = i + 1;
+
+            for (let j = 0; j < frameArray.length; j++) {
+              let found = false;
+              for (let k = i + 1; k < referenceString.length; k++) {
+                if (referenceString[k] === frameArray[j]) {
+                  if (k > farthest) {
+                    farthest = k;
+                    indexToReplace = j;
+                  }
+                  found = true;
+                  break;
+                }
+              }
+              if (!found) {
+                indexToReplace = j;
+                break;
+              }
+            }
+
+            if (indexToReplace === -1) indexToReplace = 0;
+            frameArray[indexToReplace] = page;
+          }
+          pageFaults++;
+          states.push({ frame: [...frameArray], fault: true, page: page });
+        } else {
+          states.push({ frame: [...frameArray], fault: false, page: page });
+        }
+      }
+      return { faults: pageFaults, states };
+    }
+
+    // Render results on page
+    function displayResult(algorithmName, faults) {
+      const resultsDiv = document.getElementById("results");
+      const p = document.createElement("p");
+      p.classList.add("result-item");
+      p.textContent = `${algorithmName}: ${faults} page faults`;
+      resultsDiv.appendChild(p);
+    }
+
+    // Draw memory load table
+    function drawMemoryTable(states, frames, algorithmName) {
+      const container = document.getElementById("memoryTableContainer");
+      const title = document.createElement("h3");
+      title.textContent = `${algorithmName} - Memory Frame States`;
+      container.appendChild(title);
+
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+      const thRef = document.createElement("th");
+      thRef.textContent = "Reference";
+      headerRow.appendChild(thRef);
+
+      for (let i = 0; i < frames; i++) {
+        const th = document.createElement("th");
+        th.textContent = `Frame ${i+1}`;
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+
+      states.forEach(state => {
+        const row = document.createElement("tr");
+        const refCell = document.createElement("td");
+        refCell.textContent = state.page;
+        row.appendChild(refCell);
+
+        for (let i = 0; i < frames; i++) {
+          const cell = document.createElement("td");
+          if (state.frame[i] !== undefined) {
+            cell.textContent = state.frame[i];
+          } else {
+            cell.textContent = "";
+          }
+          // Color code fault or hit
+          if (state.fault && state.frame.includes(state.page) && state.frame.indexOf(state.page) === i) {
+            cell.classList.add("fault");
+          } else if (!state.fault && state.frame.includes(state.page) && state.frame.indexOf(state.page) === i) {
+            cell.classList.add("hit");
+          }
+          row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+
+    // Plot bar chart with Chart.js
+    function plotGraph(results) {
+      const ctx = document.getElementById("comparisonChart").getContext("2d");
+
+      // Destroy existing chart if any
+      if(window.barGraph) window.barGraph.destroy();
+
+      window.barGraph = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(results),
+          datasets: [{
+            label: 'Page Faults',
+            data: Object.values(results),
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              precision: 0
+            }
+          }
+        }
+      });
+    }
+
+    function runSimulation() {
+      // Clear previous results
+      document.getElementById("results").innerHTML = "";
+      document.getElementById("memoryTableContainer").innerHTML = "";
+
+      // Get input values
+      const frames = parseInt(document.getElementById("framesInput").value);
+      const refStrRaw = document.getElementById("referenceStringInput").value.trim();
+
+      if (!frames || frames < 1) {
+        alert("Please enter a valid number of frames (minimum 1).");
+        return;
+      }
+      if (!refStrRaw) {
+        alert("Please enter the reference string.");
+        return;
+      }
+
+      // Parse reference string into number array
+      let referenceString = refStrRaw.split(",").map(s => Number(s.trim()));
+      if (referenceString.some(isNaN)) {
+        alert("Reference string must contain only numbers separated by commas.");
+        return;
+      }
+
+      // Run algorithms
+      const fifoResult = fifo(frames, referenceString);
+      const lruResult = lru(frames, referenceString);
+      const optimalResult = optimal(frames, referenceString);
+
+      // Display faults
+      displayResult("FIFO", fifoResult.faults);
+      displayResult("LRU", lruResult.faults);
+      displayResult("Optimal", optimalResult.faults);
+
+      // Plot graph
+      const resultsObj = {
+        FIFO: fifoResult.faults,
+        LRU: lruResult.faults,
+        Optimal: optimalResult.faults
+      };
+      plotGraph(resultsObj);
+
+      // Show best algorithm
+      const minFaults = Math.min(fifoResult.faults, lruResult.faults, optimalResult.faults);
+      const best = Object.keys(resultsObj).filter(k => resultsObj[k] === minFaults);
+      const bestText = best.length > 1 ? best.join(" & ") : best[0];
+      const bestDiv = document.createElement("div");
+      bestDiv.classList.add("best-algorithm");
+      bestDiv.textContent = `Best Algorithm: ${bestText} with ${minFaults} page faults`;
+      document.getElementById("results").appendChild(bestDiv);
+
+      // Show memory table states (you can comment/uncomment the ones you want)
+      drawMemoryTable(fifoResult.states, frames, "FIFO");
+      drawMemoryTable(lruResult.states, frames, "LRU");
+      drawMemoryTable(optimalResult.states, frames, "Optimal");
+    }
+  </script>
+</body>
+</html>
+
