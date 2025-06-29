@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="f_design(pageTheory).css">
+    <title>Overview of Page Replacement Algorithms</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#definition">Definition</a></li>
+            <li><a href="#importance">Importance</a></li>
+            <li><a href="#algorithms">Common Page Replacement Algorithms</a></li>
+            <li><a href="#comparison">Comparison of Algorithms</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Overview of Page Replacement Algorithms</h1>
+        <p>Understanding the strategies for managing memory in virtual memory systems.</p>
+    </header>
+
+    <section class="theory-section" id="definition">
+        <h2>What are Page Replacement Algorithms?</h2>
+        <p><b>Page Replacement Algorithms</b> are strategies used by operating systems to manage the allocation of physical memory when a page fault occurs. When a program accesses a page that is not currently in physical memory, the operating system must decide which page to evict to make room for the new page. The choice of algorithm can significantly impact system performance.</p>
+    </section>
+
+    <section class="theory-section" id="importance">
+        <h2>Importance of Page Replacement Algorithms</h2>
+        <ul>
+            <li><b>Efficiency:</b> The choice of algorithm affects how efficiently memory is utilized, impacting overall system performance.</li>
+            <li><b>Minimizing Page Faults:</b> Effective algorithms can reduce the number of page faults, leading to faster application execution.</li>
+            <li><b>Resource Management:</b> Algorithms help manage limited physical memory resources, allowing multiple processes to run concurrently.</li>
+            <li><b>System Responsiveness:</b> The right algorithm can enhance system responsiveness, improving user experience during multitasking.</li>
+        </ul>
+    </section>
+
+    <section class="theory-section" id="algorithms">
+        <h2>Common Page Replacement Algorithms</h2>
+        <div class="theory-content">
+            <div class="theory-item">
+                <h3>Least Recently Used (LRU)</h3>
+                <p>Evicts the page that has not been used for the longest time. This algorithm is based on the principle that pages used recently will likely be used again soon.</p>
+            </div>
+            <div class="theory-item">
+                <h3>First-In-First-Out (FIFO)</h3>
+                <p>Evicts the oldest page in memory, regardless of how often it has been used. While simple to implement, it may not always yield optimal performance.</p>
+            </div>
+            <div class="theory-item">
+                <h3>Optimal Page Replacement</h3>
+                <p>Evicts the page that will not be used for the longest time in the future. This algorithm is theoretical and serves as a benchmark for evaluating other algorithms.</p>
+            </div>
+            <div class="theory-item">
+                <h3>Least Frequently Used (LFU)</h3>
+                <p>Replaces the page that has been accessed the least number of times. It maintains a count of how often each page is accessed, making it effective in certain scenarios.</p>
+            </div>
+            <div class="theory-item">
+                <h3>Random</h3>
+                <p>Randomly selects a page to evict when a new page needs to be loaded. This method is straightforward but does not consider usage patterns, which can lead to suboptimal performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="theory-section" id="comparison">
+        <h2>Comparison of Page Replacement Algorithms</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Advantages</th>
+                    <th>Disadvantages</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LRU</td>
+                    <td>Good performance in most scenarios; adapts to usage patterns.</td>
+                    <td>Requires additional memory for tracking usage; can be complex to implement.</td>
+                </tr>
+                <tr>
+                    <td>FIFO</td>
+                    <td>Simple to implement; requires minimal overhead </td>
+                    <td>Can lead to poor performance due to the "Belady's anomaly"; does not consider usage frequency.</td>
+                </tr>
+                <tr>
+                    <td>Optimal</td>
+                    <td>Provides the best possible performance; serves as a benchmark.</td>
+                    <td>Not implementable in practice; requires future knowledge of page requests.</td>
+                </tr>
+                <tr>
+                    <td>LFU</td>
+                    <td>Effective in scenarios with stable access patterns; reduces page faults.</td>
+                    <td>Can lead to issues with pages that are infrequently accessed but still needed.</td>
+                </tr>
+                <tr>
+                    <td>Random</td>
+                    <td>Easy to implement; low overhead.</td>
+                    <td>Performance can be unpredictable; does not consider usage patterns.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <a href="f_theory.html" class="button">Back</a>
+
+    <script src="f_javascript.js"></script>
+</body>
+
+</html>
