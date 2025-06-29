@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/*mainpage and signup page*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons{
+    margin: 20px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+
+
+
+/*home page*/
+
+
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: rgb(14, 80, 161); /* Purple background */
+    overflow: hidden;
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    flex: 1;
+}
+
+.navbar a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: white; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Animation effects */
+}
+
+.navbar a:hover {
+    background-color:#5c6bc0; /* Darker purple on hover */
+    transform: scale(1.1); /* Scale effect on hover */
+}
+
+/* Add some padding to the body to prevent content from being hidden behind the navbar */
+body {
+    padding-top: 60px; /* Adjust based on the height of the navbar */
+}
+
+
+/* f_design.css */
+html,
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100%; /* Full height */
+}
+
+.navbar {
+    background-color: #000; /* Black background for navbar */
+    position: fixed; /* Fix the navbar to the top */
+    top: 0; /* Position it at the top */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it stays above other content */
+    animation: slideDown 0.5s ease; /* Slide down animation for navbar */
+    padding: 10px; /* Padding for navbar */
+}
+
+.navbar ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Flexbox for horizontal layout */
+}
+
+.navbar li {
+    margin-right: 20px; /* Space between menu items */
+}
+
+.navbar a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+   
+
+.section {
+    padding: 80px 20px; /* Padding for sections */
+    margin-top: 60px; /* Space below the fixed navbar */
+    opacity: 0; /* Start hidden */
+    transform: translateY(20px); /* Start slightly below */
+    animation: fadeIn 0.5s forwards; /* Fade-in animation */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for visibility */
+}
+
+/* Keyframes for navbar slide down animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for section fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Add a class to trigger the fade-in effect when the section is in view */
+.section.in-view {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+}
+
+
+
+
+.section {
+    height: 100vh; /* Full viewport height */
+    padding:  80px 20px; /* Padding for sections */
+    margin-top: 60px; /* Space for fixed navbar */
+    display: flex; /* Flexbox for centering content */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    opacity: 0; /* Start hidden for animation */
+    transition: opacity 0.5s ease; /* Smooth transition for opacity */
+}
+
+.section.in-view {
+    opacity: 1; /* Fade in when in view */
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(100%);
+}
+
+.background::after{
+    content: '';
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(to top, #000 10%, transparent);
+}
+
+.home {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    margin-top: 150px;
+}
+
+h1, p {
+    position: relative; /* Ensure text is positioned relative to the section */
+    z-index: 1; /* Ensure text is above the background */
+}
+
+
+
+body {
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use Flexbox for body */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center align children horizontally */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+
+.background {
+    position: relative; /* Position relative for overlay */
+    height: 100vh; /* Full height */
+    overflow: hidden; /* Hide overflow */
+}
+
+.background img {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Cover the entire area */
+    position: absolute; /* Position absolute to fill the container */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    z-index: 1; /* Behind the overlay */
+}
+
+.overlay {
+    position: relative; /* Position relative for text */
+    z-index: 2; /* Above the background image */
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align items */
+    justify-content: center; /* Center vertically */
+    height: 100%; /* Full height */
+    color: black; /* Text color */
+    text-align: center; /* Center text */
+}
+
+.section {
+    background-color:none; /* Optional overlay for better text visibility */
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px; /* Space between sections */
+    width: 80%; /* Width max-width: 600px; /* Maximum width for sections */
+}
+
+h1, p {
+    margin: 0; /* Remove default margin */
+} 
+
+
+.button {
+    position: relative;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+  .button:active {
+    transform: scale(0.95);
+  }
+  .button:before,
+  .button:after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1000;
+    background-repeat: no-repeat;
+  }
+
+
+
+
+  .section {
+   
+    padding: 20px; /* Padding around the text */
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px; /* Space between sections */
+    width: 80%; /* Width of the section */
+    max-width: 600px; /* Maximum width for sections */
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items horizontally */
+    justify-content: center; /* Center align items vertically */
+    text-align: center; /* Center text */
+    position: relative; /* Position relative for overlay */
+    z-index: 2; /* Above the background image */
+}
+
+.button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for the button */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Inline-block for button */
+    font-size: 16px; /* Font size */
+    margin-top: 10px; /* Space above the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Transition effect */
+}
+
+.button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+body {
+    background-color: #E6E6FA; /* Pastel purple background */
+    color: #333; /* Dark text color for contrast */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+/*simulator page*/
+
+
+#run-form {
+    background-color: #ffffff; /* White background for the form */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Use a percentage width for responsiveness */
+    max-width: 5000px;
+    display: flex; 
+    margin-top: -6%;
+    margin-bottom: -1%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em; /* Large font size for the heading */
+    margin-bottom: 20px;
+    color: #6A5ACD; /* Dark slate blue color for the heading */
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #6A5ACD; /* Dark slate blue border */
+    border-radius: 5px;
+    transition: border-color 0.3s ease, transform 0.3s ease; /* Animation for focus */
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #8A2BE2; /* Lighter purple on focus */
+    transform: scale(1.02); /* Slightly enlarge on focus */
+}
+
+.run-button {
+    background-color: #6A5ACD; /* Dark slate blue button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animation for hover */
+    display: block;
+    margin: 20px auto; /* Center the button */
+}
+
+.run-button:hover {
+    background-color: #8A2BE2; /* Lighter purple on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.run-button:active {
+    transform: scale(0.95); /* Shrink on click */
+}
